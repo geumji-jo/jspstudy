@@ -38,6 +38,11 @@ public class JSONServlet extends HttpServlet {
 			if (strAge != null && strAge.isEmpty() == false) {
 				age = Integer.parseInt(strAge);
 			}
+			
+			// 이름 예외 처리
+			if(name.length() < 2 || name.length() > 6 ) {
+				throw new NameHandleException(name + "은(는) 잘못된 이름입니다", 601);
+			}
 
 			// 나이 예외 처리
 			if (age < 0 || age > 100) {
@@ -63,18 +68,19 @@ public class JSONServlet extends HttpServlet {
 			out.flush();
 			out.close();
 
-		} catch (AgeHandleException e) {
+		} catch (MyHandleException e) {
 
 			response.setContentType("text/plain; charset=UTF-8");
 			response.setStatus(e.getErrorCode());
 
 			// 응답 만들기
 			response.getWriter().println(e.getMessage());
-
 		}
-
-	}
-
+			
+			
+			
+		}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
