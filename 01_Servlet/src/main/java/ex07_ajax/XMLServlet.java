@@ -27,7 +27,7 @@ public class XMLServlet extends HttpServlet {
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
 		String strPrice = request.getParameter("price");
-		int price =0;
+		int price = 0;
 		if(strPrice != null && strPrice.isEmpty() == false) {
 			price = Integer.parseInt(strPrice);
 		}

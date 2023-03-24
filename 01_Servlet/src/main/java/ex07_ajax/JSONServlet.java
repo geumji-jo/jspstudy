@@ -57,7 +57,7 @@ public class JSONServlet extends HttpServlet {
 			System.out.println(obj.toString());// {"name" : "마돈나", "age": 50}
 
 			// 응답 데이터 타입(json의 마인타입)
-			response.setContentType("aapication/json; charset=UTF-8");
+			response.setContentType("application/json; charset=UTF-8");
 
 			// 출력 스트림 생성
 			PrintWriter out = response.getWriter();
