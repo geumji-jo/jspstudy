@@ -49,6 +49,14 @@
 		Product product = new Product(item, itemCount);
 		*/
 	%>
+	
+	<script>
+		if(confirm('<%=item%>을 장바구니에 추가했습니다.\n장바구니를 확인하려면 "확인", 계속 쇼핑하려면 "취소"버튼을 누르세요.')){
+			location.href = '03_cart_list.jsp';
+		} else {
+			location.href = '01_form.jsp';
+		}
+	</script>
 
 </body>
 </html>

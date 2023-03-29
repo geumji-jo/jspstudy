@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,21 +24,21 @@ public class FileListServlet extends HttpServlet {
 		String parent = request.getParameter("parent");
 		parent = URLDecoder.decode(parent, "UTF-8");
 		
-		//parent 경로에 저장된 파일 목록
-		File dir =new File(parent);
+		// parent 경로에 저장된 파일 목록
+		File dir = new File(parent);
 		File[] files = dir.listFiles();
 		
 		// 응답
 		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out =response.getWriter();
+		PrintWriter out = response.getWriter();
 		for(File file : files) {
-			out.println("<div>" + file.getName() + "<a href=\"/01_Servlet/DownloadServlet?name=" + file.getName() + "></div>");
+			out.println("<div>" + file.getName() + " <a href=\"/01_Servlet/DownloadServlet?path=" + URLEncoder.encode(file.getPath(), "UTF-8") + "\">다운로드</a></div>");			
 		}
 		out.flush();
 		out.close();
+		
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		doGet(request, response);
