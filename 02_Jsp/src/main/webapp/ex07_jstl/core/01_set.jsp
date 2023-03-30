@@ -13,9 +13,10 @@
 	<%--
 		<c:set></c:set>
 		1. 속성(Attribute)을 만드는 태그이다.
-		2. binding 영역 (pageContext, request, session, application)을 지정할 수 있다.
+		2. binding 영역 (page(디폴트, 생략가능), request, session, application)을 지정할 수 있다.
 		3. 형식
-			<c:set var="속성명" value="값" scope="영역">
+			1)<c:set var="속성명" value="값" scope="영역"></c:set>
+			2)<c:set var="속성명" value="값" scope="영역"/> 열어주는 태그 끝에 /를 적어주면 태그를 닫지 않아도 된다.
 		4. 예시
 			<c:set var="a" value="1" scope="page"></c:set>
 			<c:Set var="a" value="10" scope="request"></c:set>
@@ -37,7 +38,7 @@
 	 <c:set var="health" value="${(bmi < 20) ? '저체중' : (bmi < 25) ? '정상' :'비만' }" scope="page"></c:set>
 	 
 	 <ul>
-	 	<li>나이 : ${age}살</li>77
+	 	<li>나이 : ${age}살</li>
 	 	<li>생존 : ${isAlive ? '살았다' : '죽었다'}</li>
 	 	<li>bmi지수 : ${bmi}</li>
 	 	<li>건강상태 : ${health}</li>
