@@ -9,8 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.util.RequestUtil;
 
+import common.ActionForward;
+import service.BoardAddService;
+import service.BoardDetailService;
+import service.BoardListService;
+import service.BoardModifyService;
+import service.BoardRemoveService;
+import service.IBoardService;
 
-@WebServlet("*.do")	//getAllBoardList.do-모두보기//getBoardByNo.do-번호의의한게시글가져오기 // addboard.do //modifyBard.do// removeBoard.do
+
+@WebServlet("*.do")	// getAllBoardList.do-모두보기//getBoardByNo.do-번호의의한게시글가져오기 // addboard.do //modifyBard.do// removeBoard.do
 public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
@@ -24,8 +32,53 @@ public class BoardController extends HttpServlet {
 		
 		// URLMapping 확인
 		String requetstURI = request.getRequestURI();							/* 	/04_Dbcp/getAllBoardList.do*/	
-		String contextPath = request.getContextPath();							/*	/04_Dbcp				*/
-		String urlMapping = requetstURI.substring(contextPath.length());		/*   /getAllBoardList.do	*/
+		String contextPath = request.getContextPath();							/*	/04_Dbcp				   */
+		String urlMapping = requetstURI.substring(contextPath.length());		/*  /getAllBoardList.do	       */
+		
+		//모든 서비스의 공통 타입 선언
+		IBoardService service = null;
+		
+		// ActionForward 선언
+		ActionForward af = null;
+		
+		// URLMapping에 따른 서비스 생성
+		switch (urlMapping) {
+		case "/getAllBoardList.do":
+			service = new BoardListService();
+			break;
+		case"/getBoardByNo.do":
+			service = new BoardDetailService();
+			break;
+		case"/addboard.do":
+			service = new BoardAddService();
+			break;
+		case"/modifyBard.do":
+			service = new BoardModifyService();
+			break;
+		case"/removeBoard.do":
+			service = new BoardRemoveService();
+			break;
+			
+		
+		}
+		
+		// 서비스 실행
+		if(service != null) {
+			af = service.execute(request, response);
+		}
+		
+		// 응답 View 이동
+		if(af != null) {
+			if(af.isRedirect())	{
+				response.sendRedirect(af.getPath());
+			} else {
+				request.getRequestDispatcher(af.getPath()).forward(request, response);
+			}
+			
+		}
+		
+		
+		
 		
 		}
 
