@@ -18,7 +18,7 @@ import service.BoardRemoveService;
 import service.IBoardService;
 
 
-@WebServlet("*.do")	// getAllBoardList.do-모두보기//getBoardByNo.do-번호의의한게시글가져오기 // addboard.do //modifyBard.do// removeBoard.do
+@WebServlet("*.do")	// getAllBoardList.do // getBoardByNo.do // writeBoard.do // addboard.do //modifyBard.do// removeBoard.do
 public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
@@ -49,16 +49,18 @@ public class BoardController extends HttpServlet {
 		case"/getBoardByNo.do":
 			service = new BoardDetailService();
 			break;
-		case"/addboard.do":
+		case"/addBoard.do":
 			service = new BoardAddService();
 			break;
-		case"/modifyBard.do":
+		case"/modifyBoard.do":
 			service = new BoardModifyService();
 			break;
 		case"/removeBoard.do":
 			service = new BoardRemoveService();
 			break;
-			
+		case"/writeBoard.do":
+			af = new ActionForward("board/write.jsp", false);	//board 폴더 아래 write.jsp로 forward한다.(단순 이동의 경우 forward한다.)
+			break;
 		
 		}
 		
