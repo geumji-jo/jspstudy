@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import service.IPostService;
+import service.PostDeleteService;
+import service.PostDetailService;
 import service.PostListService;
 import service.PostSaveService;
 
@@ -44,7 +46,12 @@ public class PostController extends HttpServlet {
 		case "/write.post":
 			path = "post/write.jsp";
 			break;
-			
+		case "/detail.post":
+			service = new PostDetailService();
+			break;
+		case "/delete.post":
+			service = new PostDeleteService();
+			break;
 		}
 
 		// 선택된 서비스 실행
