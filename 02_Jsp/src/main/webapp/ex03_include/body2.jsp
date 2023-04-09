@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8"%>
 
 
-<%@ include file="header.jsp"%>
+<jsp:include page="header.jsp">
+	<jsp:param value="body2" name="title"/>
+</jsp:include>
 
 <h1>body2</h1>
 

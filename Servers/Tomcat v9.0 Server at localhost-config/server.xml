@@ -153,7 +153,7 @@
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
       	
-      <Context docBase="04_Dbcp_Practice" path="/04_Dbcp_Practice" reloadable="true" source="org.eclipse.jst.jee.server:04_Dbcp_Practice"/></Host>
+      <Context docBase="02_Jsp" path="/02_Jsp" reloadable="true" source="org.eclipse.jst.jee.server:02_Jsp"/></Host>
     </Engine>
   </Service>
 </Server>

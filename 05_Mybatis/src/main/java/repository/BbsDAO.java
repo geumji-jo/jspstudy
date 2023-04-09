@@ -69,9 +69,9 @@ public class BbsDAO {
 		}
 	
 	// 4. 수정
-	public int  updateBbs(BbsDTO bbs) {
+	public int updateBbs(BbsDTO bbs) {
 		SqlSession ss = factory.openSession(false);
-		int updateResult = ss.update(NS + "", bbs);
+		int updateResult = ss.update(NS + "updateBbs", bbs);
 		if(updateResult == 1) {
 			ss.commit();
 		}
@@ -80,9 +80,9 @@ public class BbsDAO {
 	}
 	
 	// 5. 삭제
-	public int  deletebbs(int bbsNo) {
+	public int deleteBbs(int bbsNo) {
 		SqlSession ss = factory.openSession(false);
-		int deleteResult = ss.delete(NS + "deletebbs" , bbsNo);
+		int deleteResult = ss.delete(NS + "deleteBbs" , bbsNo);
 		if(deleteResult == 1) {
 			ss.commit();
 		}
